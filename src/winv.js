@@ -2,7 +2,22 @@ const winv = {
   greet() {
     return 'hello';
   },
-  nodeToJSON (node) {
+  exparser: {
+    parser: function () {
+
+    },
+    components: [{
+      'win-base': {}
+    }]
+  },
+  Page () {
+
+  },
+  App () {
+
+  },
+  nodeToJSON(node)
+  {
     // Code base on https://gist.github.com/sstur/7379870
     node = node || this;
     var obj = {
@@ -30,12 +45,13 @@ const winv = {
       length = childNodes.length;
       arr = obj.childNodes = new Array(length);
       for (i = 0; i < length; i++) {
-        arr[i] = toJSON(childNodes[i]);
+        arr[i] = nodeToJSON(childNodes[i]);
       }
     }
     return obj;
   },
-  jsonToDom(obj) {
+  jsonToDom(obj)
+  {
     // Code base on https://gist.github.com/sstur/7379870
     if (typeof obj == 'string') {
       obj = JSON.parse(obj);
@@ -71,7 +87,7 @@ const winv = {
     if (nodeType == 1 || nodeType == 11) {
       var childNodes = obj.childNodes || [];
       for (i = 0, len = childNodes.length; i < len; i++) {
-        node.appendChild(toDOM(childNodes[i]));
+        node.appendChild(jsonToDom(childNodes[i]));
       }
     }
     return node;
