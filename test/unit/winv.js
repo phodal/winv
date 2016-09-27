@@ -1,18 +1,13 @@
 import winv from '../../src/winv';
 
 describe('winv', () => {
-  describe('Greet function', () => {
-    beforeEach(() => {
-      spy(winv, 'greet');
-      winv.greet();
-    });
+  describe('Component', function () {
+    it('should be able convert dom to json', function () {
+      var newDiv = document.createElement('div');
+      var newContent = document.createTextNode('Hi there and greetings!');
+      newDiv.appendChild(newContent); //add the text node to the newly created div.
 
-    it('should have been run once', () => {
-      expect(winv.greet).to.have.been.calledOnce;
-    });
-
-    it('should have always returned hello', () => {
-      expect(winv.greet).to.have.always.returned('hello');
+      winv.nodeToJSON(newDiv).toBe('{}');
     });
   });
 });
