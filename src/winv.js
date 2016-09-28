@@ -124,7 +124,7 @@ const winv = {
     }
     if (nodeType == 1 || nodeType == 11) {
       var childNodes = obj.childNodes || [];
-      for (i = 0, len = childNodes.length; i < len; i++) {
+      for (i = 0, len = childNodes.length; i <  len; i++) {
         node.appendChild(this.jsonToDom(childNodes[i]));
       }
     }
