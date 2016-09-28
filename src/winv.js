@@ -1,23 +1,24 @@
 const winv = {
-  greet() {
-    return 'hello';
-  },
-  exparser: {
-    parser: function () {
+  parser: function() {
 
-    },
-    components: [{
-      'win-base': {}
-    }]
   },
+  components: [{
+    'win-base': {}
+  }],
   Page () {
 
   },
   App () {
 
   },
-  nodeToJSON(node)
-  {
+  stringToDomJSON(string){
+    return this.nodeToJSON(this.domParser(string));
+  },
+  domParser(string){
+    var parser = new DOMParser();
+    return parser.parseFromString(string, 'text/xml');
+  },
+  nodeToJSON(node){
     // Code base on https://gist.github.com/sstur/7379870
     node = node || this;
     var obj = {
@@ -36,7 +37,7 @@ const winv = {
       var length = attrs.length;
       var arr = obj.attributes = new Array(length);
       for (var i = 0; i < length; i++) {
-        attr = attrs[i];
+        var attr = attrs[i];
         arr[i] = [attr.nodeName, attr.nodeValue];
       }
     }
@@ -45,7 +46,7 @@ const winv = {
       length = childNodes.length;
       arr = obj.childNodes = new Array(length);
       for (i = 0; i < length; i++) {
-        arr[i] = nodeToJSON(childNodes[i]);
+        arr[i] = this.nodeToJSON(childNodes[i]);
       }
     }
     return obj;
@@ -87,7 +88,7 @@ const winv = {
     if (nodeType == 1 || nodeType == 11) {
       var childNodes = obj.childNodes || [];
       for (i = 0, len = childNodes.length; i < len; i++) {
-        node.appendChild(jsonToDom(childNodes[i]));
+        node.appendChild(this.jsonToDom(childNodes[i]));
       }
     }
     return node;

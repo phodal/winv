@@ -24,6 +24,7 @@
   "homepage": "https://github.com/phodal/winv",
   "devDependencies": {
     "babel-core": "6.14.0",
+    "babel-eslint": "^7.0.0",
     "babel-loader": "6.2.5",
     "babel-polyfill": "6.13.0",
     "babel-preset-latest": "6.14.0",
