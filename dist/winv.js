@@ -60,6 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 	window.eventPool = [];
+	window.globalData = {};
 	var winv = {
 	  parser: function parser() {},
 
@@ -67,7 +68,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    'win-base': {}
 	  }],
 	  run: function run() {
-	    console.log(window.eventPool);
 	    for (var event in window.eventPool) {
 	      window.eventPool[event]();
 	    }
@@ -84,8 +84,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if ('on' === option.slice(0, 2)) {
 	        window.eventPool.push(options[option]);
 	      }
+	      if ('data' === option) {
+	        window.globalData = data;
+	      }
 	    }
 	  },
+	  updateData: function updateData() {},
 	  stringToDomJSON: function stringToDomJSON(string) {
 	    var json = this.nodeToJSON(this.domParser(string));
 	    if (json.nodeType === 9) {

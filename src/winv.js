@@ -1,4 +1,7 @@
 window.eventPool = [];
+window.globalData = {
+
+};
 const winv = {
   parser() {
 
@@ -7,7 +10,6 @@ const winv = {
     'win-base': {}
   }],
   run() {
-    console.log(window.eventPool);
     for(var event in window.eventPool) {
       window.eventPool[event]();
     }
@@ -24,7 +26,13 @@ const winv = {
       if ('on' === option.slice(0, 2)) {
         window.eventPool.push(options[option]);
       }
+      if ('data' === option ) {
+        window.globalData = data;
+      }
     }
+  },
+  updateData () {
+
   },
   stringToDomJSON(string){
     var json = this.nodeToJSON(this.domParser(string));

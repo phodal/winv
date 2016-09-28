@@ -6,13 +6,9 @@
     <script src="./dist/winv.js"></script>
 </head>
 <body>
-
+<div id="app"></div>
 </body>
 <script>
-    var template = '<div id="app"><view class="container"><text class="user-motto">{{motto}}</text></view></div>';
-    var domJson = winv.default.stringToDomJSON(template)[0];
-    var dom = winv.default.jsonToDom(domJson);
-
     var App = winv.default.App;
     var Page = winv.default.Page;
 
@@ -28,7 +24,13 @@
         onLoad: function() {
             console.log('On Load');
         }
-    })
+    });
+
+    var template = '<view class="container"><text class="user-motto">{{motto}}</text></view>';
+    var domJson = winv.default.stringToDomJSON(template)[0];
+    console.log(domJson);
+    var dom = winv.default.jsonToDom(domJson);
+
     winv.default.run();
 </script>
 </html>
