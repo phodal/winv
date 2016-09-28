@@ -10,8 +10,8 @@
 <div id="app"></div>
 </body>
 <script>
-    var App = winv.default.App;
-    var Page = winv.default.Page;
+    var App = winv.App;
+    var Page = winv.Page;
 
     App({
         onLaunch: function() {
@@ -27,7 +27,7 @@
         }
     });
 
-    winv.default.setTemplate('<view class="container"><text class="user-motto">{{motto}}</text></view>')
-    winv.default.appRun();
+    winv.setTemplate('<view class="container"><text class="user-motto">{{motto}}</text></view>')
+    winv.appRun();
 </script>
 </html>
