@@ -67,14 +67,14 @@ function build() {
           {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
         ]
       },
-      devtool: 'source-map'
+      // devtool: 'source-map'
     }))
-    .pipe(gulp.dest(destinationFolder))
-    .pipe($.filter(['**', '!**/*.js.map']))
-    .pipe($.rename(`${exportFileName}.min.js`))
-    .pipe($.sourcemaps.init({loadMaps: true}))
-    .pipe($.uglify())
-    .pipe($.sourcemaps.write('./'))
+    // .pipe(gulp.dest(destinationFolder))
+    // .pipe($.filter(['**', '!**/*.js.map']))
+    // .pipe($.rename(`${exportFileName}.min.js`))
+    // .pipe($.sourcemaps.init({loadMaps: true}))
+    // .pipe($.uglify())
+    // .pipe($.sourcemaps.write('./'))
     .pipe(gulp.dest(destinationFolder));
 }
 

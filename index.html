@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Winv Demo</title>
+    <script src="./dist/winv.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    var domText = '<div id="app"><view class="container"><text class="user-motto">hello,world</text></view></div>';
+    var domJson = winv.default.stringToDomJSON(domText)[0];
+    var dom = winv.default.jsonToDom(domJson);
+    console.log(dom);
+</script>
+</html>
