@@ -10,24 +10,24 @@
 <div id="app"></div>
 </body>
 <script>
-    var App = winv.App;
-    var Page = winv.Page;
+var App = winv.App;
+var Page = winv.Page;
 
-    App({
-        onLaunch: function() {
-            console.log('On Launch');
-        }
-    });
-    Page({
-        data: {
-            motto: 'Hello World'
-        },
-        onLoad: function() {
-            console.log('On Load');
-        }
-    });
+App({
+    onLaunch: function() {
+        console.log('On Launch');
+    }
+});
+Page({
+    data: {
+        motto: 'hello, world'
+    },
+    onLoad: function() {
+        console.log('On Load');
+    }
+});
 
-    winv.setTemplate('<view class="container"><text class="user-motto">{{motto}}</text></view>')
-    winv.appRun();
+winv.setTemplate('<view class="container"><text class="user-motto">{{motto}}</text></view>')
+winv.appRun();
 </script>
 </html>
