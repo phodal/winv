@@ -5,7 +5,7 @@ const winv = {
 
   },
   components: [{
-    'win-base': {}
+
   }],
   run() {
     for (var event in window.eventPool) {
@@ -41,6 +41,7 @@ const winv = {
     }
   },
   stringToDomJSON(string){
+    string = '<div class="page"><div class="page__hd">' + string + '</div></div>';
     var json = this.nodeToJSON(this.domParser(string));
     if (json.nodeType === 9) {
       json = json.childNodes;

@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  parser: function parser() {},
 
 	  components: [{
-	    'win-base': {}
+
 	  }],
 	  run: function run() {
 	    for (var event in window.eventPool) {
@@ -103,6 +103,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  stringToDomJSON: function stringToDomJSON(string) {
+      string = '<page class="page"><div class="page__hd">' + string + '</div></page>';
 	    var json = this.nodeToJSON(this.domParser(string));
 	    if (json.nodeType === 9) {
 	      json = json.childNodes;
