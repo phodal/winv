@@ -78,7 +78,7 @@ const winv = {
         node = document.createComment(obj.nodeValue);
         break;
       case 9: //DOCUMENT_NODE
-        node = document.implementation.createDocument();
+        node = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'html', null);
         break;
       case 10: //DOCUMENT_TYPE_NODE
         node = document.implementation.createDocumentType(obj.nodeName);
