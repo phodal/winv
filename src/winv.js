@@ -7,7 +7,14 @@ const winv = {
   components: [{
 
   }],
-  run() {
+  setTemplate(template){
+    this.template = template;
+  },
+  appRun() {
+    var template = this.template;
+    var domJson = this.stringToDomJSON(template)[0];
+    var dom = this.jsonToDom(domJson);
+    document.getElementById('app').appendChild(dom);
     for (var event in window.eventPool) {
       window.eventPool[event]();
     }

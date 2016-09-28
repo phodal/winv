@@ -64,10 +64,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	var winv = {
 	  parser: function parser() {},
 
-	  components: [{
-
-	  }],
-	  run: function run() {
+	  components: [{}],
+	  setTemplate: function setTemplate(template) {
+	    this.template = template;
+	  },
+	  appRun: function appRun() {
+	    var template = this.template;
+	    var domJson = this.stringToDomJSON(template)[0];
+	    var dom = this.jsonToDom(domJson);
+	    document.getElementById('app').appendChild(dom);
 	    for (var event in window.eventPool) {
 	      window.eventPool[event]();
 	    }
@@ -103,7 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  stringToDomJSON: function stringToDomJSON(string) {
-      string = '<page class="page"><div class="page__hd">' + string + '</div></page>';
+	    string = '<div class="page"><div class="page__hd">' + string + '</div></div>';
 	    var json = this.nodeToJSON(this.domParser(string));
 	    if (json.nodeType === 9) {
 	      json = json.childNodes;
