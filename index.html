@@ -28,8 +28,9 @@
 
     var template = '<view class="container"><text class="user-motto">{{motto}}</text></view>';
     var domJson = winv.default.stringToDomJSON(template)[0];
-    console.log(domJson);
     var dom = winv.default.jsonToDom(domJson);
+    document.getElementById('app').appendChild(dom);
+
     console.log(dom);
 
     winv.default.run();
