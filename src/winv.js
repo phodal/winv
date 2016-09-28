@@ -1,7 +1,5 @@
 window.eventPool = [];
-window.globalData = {
-
-};
+window.globalData = {};
 const winv = {
   parser() {
 
@@ -10,7 +8,7 @@ const winv = {
     'win-base': {}
   }],
   run() {
-    for(var event in window.eventPool) {
+    for (var event in window.eventPool) {
       window.eventPool[event]();
     }
   },
@@ -19,6 +17,9 @@ const winv = {
       if ('on' === option.slice(0, 2)) {
         window.eventPool.push(options[option]);
       }
+      if ('data' === option) {
+        window.globalData = options[option];
+      }
     }
   },
   App (options) {
@@ -26,13 +27,18 @@ const winv = {
       if ('on' === option.slice(0, 2)) {
         window.eventPool.push(options[option]);
       }
-      if ('data' === option ) {
-        window.globalData = data;
-      }
     }
   },
-  updateData () {
-
+  getData: function updateData(key) {
+    return window.globalData[key];
+  },
+  utils: {
+    removeTemplateTag(str){
+      return str.substr(2, str.length - 4);
+    },
+    isTemplateTag(string){
+      return /{{[a-zA-Z1-9]+}}/.test(string);
+    }
   },
   stringToDomJSON(string){
     var json = this.nodeToJSON(this.domParser(string));
@@ -58,6 +64,9 @@ const winv = {
     }
     if (node.nodeValue) {
       obj.nodeValue = node.nodeValue;
+      if(this.utils.isTemplateTag(node.nodeValue)){
+        obj.nodeValue = this.getData(this.utils.removeTemplateTag(node.nodeValue));
+      }
     }
     var attrs = node.attributes;
     if (attrs) {

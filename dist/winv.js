@@ -77,6 +77,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if ('on' === option.slice(0, 2)) {
 	        window.eventPool.push(options[option]);
 	      }
+	      if ('data' === option) {
+	        window.globalData = options[option];
+	      }
 	    }
 	  },
 	  App: function App(options) {
@@ -84,12 +87,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if ('on' === option.slice(0, 2)) {
 	        window.eventPool.push(options[option]);
 	      }
-	      if ('data' === option) {
-	        window.globalData = data;
-	      }
 	    }
 	  },
-	  updateData: function updateData() {},
+
+	  getData: function updateData(key) {
+	    return window.globalData[key];
+	  },
+	  utils: {
+	    removeTemplateTag: function removeTemplateTag(str) {
+	      return str.substr(2, str.length - 4);
+	    },
+	    isTemplateTag: function isTemplateTag(string) {
+	      return (/{{[a-zA-Z1-9]+}}/.test(string)
+	      );
+	    }
+	  },
 	  stringToDomJSON: function stringToDomJSON(string) {
 	    var json = this.nodeToJSON(this.domParser(string));
 	    if (json.nodeType === 9) {
@@ -114,6 +126,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	    if (node.nodeValue) {
 	      obj.nodeValue = node.nodeValue;
+	      if (this.utils.isTemplateTag(node.nodeValue)) {
+	        obj.nodeValue = this.getData(this.utils.removeTemplateTag(node.nodeValue));
+	      }
 	    }
 	    var attrs = node.attributes;
 	    if (attrs) {
