@@ -59,13 +59,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	window.eventPool = [];
 	var winv = {
 	  parser: function parser() {},
+
 	  components: [{
 	    'win-base': {}
 	  }],
-	  Page: function Page() {},
-	  App: function App() {},
+	  run: function run() {
+	    console.log(window.eventPool);
+	    for (var event in window.eventPool) {
+	      window.eventPool[event]();
+	    }
+	  },
+	  Page: function Page(options) {
+	    for (var option in options) {
+	      if ('on' === option.slice(0, 2)) {
+	        window.eventPool.push(options[option]);
+	      }
+	    }
+	  },
+	  App: function App(options) {
+	    for (var option in options) {
+	      if ('on' === option.slice(0, 2)) {
+	        window.eventPool.push(options[option]);
+	      }
+	    }
+	  },
 	  stringToDomJSON: function stringToDomJSON(string) {
 	    var json = this.nodeToJSON(this.domParser(string));
 	    if (json.nodeType === 9) {

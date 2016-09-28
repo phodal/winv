@@ -1,15 +1,30 @@
+window.eventPool = [];
 const winv = {
-  parser: function() {
+  parser() {
 
   },
   components: [{
     'win-base': {}
   }],
-  Page () {
-
+  run() {
+    console.log(window.eventPool);
+    for(var event in window.eventPool) {
+      window.eventPool[event]();
+    }
   },
-  App () {
-
+  Page (options) {
+    for (var option in options) {
+      if ('on' === option.slice(0, 2)) {
+        window.eventPool.push(options[option]);
+      }
+    }
+  },
+  App (options) {
+    for (var option in options) {
+      if ('on' === option.slice(0, 2)) {
+        window.eventPool.push(options[option]);
+      }
+    }
   },
   stringToDomJSON(string){
     var json = this.nodeToJSON(this.domParser(string));
