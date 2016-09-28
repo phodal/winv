@@ -12,7 +12,11 @@ const winv = {
 
   },
   stringToDomJSON(string){
-    return this.nodeToJSON(this.domParser(string));
+    var json = this.nodeToJSON(this.domParser(string));
+    if (json.nodeType === 9) {
+      json = json.childNodes;
+    }
+    return json;
   },
   domParser(string){
     var parser = new DOMParser();
