@@ -44,6 +44,7 @@
     "gulp-sourcemaps": "1.6.0",
     "gulp-uglify": "2.0.0",
     "isparta": "4.0.0",
+    "jsdom": "^9.5.0",
     "json-loader": "0.5.4",
     "mocha": "3.0.2",
     "sinon": "1.17.5",
