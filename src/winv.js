@@ -58,7 +58,7 @@ const winv = {
       nodeType: node.nodeType
     };
     if (node.tagName) {
-      obj.tagName = node.tagName.toLowerCase();
+      obj.tagName = 'winv-' + node.tagName.toLowerCase();
     } else if (node.nodeName) {
       obj.nodeName = node.nodeName;
     }
