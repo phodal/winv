@@ -20,14 +20,18 @@ App({
 });
 Page({
     data: {
-        motto: 'hello, world'
+        motto: 'hello, world',
+        obj:{
+            name:'yang',
+            age:13
+        }
     },
     onLoad: function() {
         console.log('On Load');
     }
 });
 
-winv.setTemplate('<view class="container"><text class="user-motto">{{motto}}</text></view>')
+winv.setTemplate('<view class="container"><text class="user-motto">{{motto}}</text><text>{{obj.name}}</text><text>{{}}</text></view>')
 winv.appRun();
 </script>
 </html>
