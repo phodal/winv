@@ -109,14 +109,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    getData: function updateData(key) {
-	      return window.globalData[key];
+	      if (!key) return null;
+	      var ka = key.split(".");
+	      var ret = window.globalData[ka[0]];
+	      for (var i = 1; i < ka.length; i++) {
+	        if (!ret) return null; //can't find !
+	        ret = ret[ka[i]];
+	      }
+	      return ret;
 	    },
 	    utils: {
 	      removeTemplateTag: function removeTemplateTag(str) {
 	        return str.substr(2, str.length - 4);
 	      },
 	      isTemplateTag: function isTemplateTag(string) {
-	        return (/{{[a-zA-Z1-9]+}}/.test(string)
+	        return (/{{[a-zA-Z1-9\\.]+}}/.test(string)
 	        );
 	      }
 	    },
